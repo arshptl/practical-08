@@ -1,0 +1,75 @@
+.inputField{
+    padding: 1em;
+    width: 80%;
+    margin-bottom: 0.3em;
+    background-color: #FAEBD8;
+    border-radius: 0.5em;
+    border: 0.1em solid #ffe0b8;
+}
+
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.buttonDiv{
+    width: 100%;
+    display: flex;
+    gap: 1em;
+}
+
+.btn{
+    margin-top: 1em;
+    padding: 0.8em 1em;
+    cursor: pointer;
+    max-width: 6em;
+    color: white;
+    border: 0;
+    border-radius: 0.3em;
+}
+
+.submit{
+    background-color: #0073e6;
+}
+
+.reset{
+    background-color: #ff1a1a;
+}
+
+label{
+    color: gray;
+    width: 100%; 
+}
+
+.imageWrapper{
+    margin: 1.5em auto;
+}
+
+.customImgInput::-webkit-file-upload-button{
+    visibility: hidden;
+    cursor: pointer;    
+}
+
+.customImgInput::before {
+    content: "Photo +";
+}
+
+input[type=file]{
+    cursor: pointer;
+}
+
+input[type=file]::file-selector-button {
+    display: none;
+}
+
+input[type=file]::-webkit-file-upload-button {
+    display: none;
+ }
+
+.errorMsg{
+    margin-top: 0.1em;
+    margin-bottom: 0.8em;
+    color: lightcoral;
+}
