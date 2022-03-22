@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledLayout = styled.div`
 width: 95%;
 max-width: 78em;
-margin: 5em auto 5em auto;
+margin: 0em auto 5em auto;
 flex: 1 0 auto;
 
 @media(min-width: 62.5em){

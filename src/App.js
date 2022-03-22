@@ -7,8 +7,8 @@ const Home = React.lazy(() => import("./pages/Home"));
 const Signup = React.lazy(() => import("./pages/Signup"));
 const PageNotFound = React.lazy(() => import("./pages/404"));
 
+// App page, where all routing takes place
 function App() {
-
   const isAuthenticated = useSelector(state => state.auth.isLoggedIn)
   console.log(isAuthenticated);
   return (

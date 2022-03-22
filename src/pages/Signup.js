@@ -7,14 +7,22 @@ const StyledSignup = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
+align-items: center;
 width: 90%;
 margin: 0 auto;
+
 @media(min-width: 37.5em) {
     width: 90%;
+    align-items: stretch;
 }
 
 @media(min-width: 50em) {
     width: 70%;
+
+    h1{
+        font-size: 3em;
+    }
+
 }
 `;
 
@@ -31,16 +39,22 @@ flex-direction: column-reverse;
     *{
         flex: 1 1 0;
     }
+
+    img{
+        width:9em;
+        height: 30em;
+    }
 }
 `;
 
+// Displays this page when user hasn't been Signed up
 const Signup = () => {
     return (
         <StyledSignup>
-            <h1>Signup</h1>
+            <h1>SignUp</h1>
             <StyledContentdiv>
                 <FormComp />
-                <img src={landingImage}/>
+                <img alt="landingPageImage" src={landingImage} />
             </StyledContentdiv>
         </StyledSignup>
     )

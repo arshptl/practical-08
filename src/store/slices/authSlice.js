@@ -17,6 +17,7 @@ const getLocalStorageData = () => {
     return data;
 }
 
+// created one Slice which handles the actions and reducers
 const authSlice = createSlice({
     name: "authentication",
     initialState: getLocalStorageData() === null ? initialAuthState : getLocalStorageData,

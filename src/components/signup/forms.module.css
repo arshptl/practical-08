@@ -1,10 +1,16 @@
 .inputField{
     padding: 1em;
-    width: 80%;
+    width: 90%;
     margin-bottom: 0.3em;
     background-color: #FAEBD8;
     border-radius: 0.5em;
     border: 0.1em solid #ffe0b8;
+}
+
+@media (min-width: 37.5em){
+    .inputField{
+    width: 80%;
+    }
 }
 
 .formDiv{
@@ -40,33 +46,29 @@
 
 label{
     color: gray;
-    width: 100%; 
+    width: 100%;
+    margin-top: 0.7em;
+    margin-bottom: 0.3em; 
 }
 
 .imageWrapper{
-    margin: 1.5em auto;
+    width: 90%;
+    margin: 0.8em 0;
+    text-align: center;
 }
 
-.customImgInput::-webkit-file-upload-button{
-    visibility: hidden;
-    cursor: pointer;    
-}
-
-.customImgInput::before {
-    content: "Photo +";
-}
-
-input[type=file]{
+.imageWrapper button{
     cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    font-size: 1em;
+    margin-bottom: 0.3em;
 }
 
-input[type=file]::file-selector-button {
-    display: none;
+.photoName{
+    font-size: 0.8em;
+    color: gray;
 }
-
-input[type=file]::-webkit-file-upload-button {
-    display: none;
- }
 
 .errorMsg{
     margin-top: 0.1em;

@@ -5,9 +5,14 @@ import classes from './forms.module.css';
 import cx from 'classnames';
 import { authActions } from '../../store/slices/authSlice';
 import { useDispatch } from 'react-redux';
+import "yup-phone";
 
-const phoneRegExp = /^[6-9]\d{9}$/gi;
+// validation for phoneNo
+const phoneSchema = Yup.string()
+    .phone("IN")
+    .required("PhoneNo is required");
 
+// This component will generate the form
 const FormComp = () => {
 
     const dispatch = useDispatch();
@@ -22,9 +27,10 @@ const FormComp = () => {
             password: '',
             confPassword: '',
         },
+        //validation using Yup
         validationSchema: Yup.object({
             name: Yup.string()
-                .max(15, 'Must be 15 characters or less')
+                .min(15, 'Must be 15 characters or high').trim()
                 .required('Name is Required'),
             profilePic: Yup.mixed()
                 .nullable()
@@ -35,9 +41,7 @@ const FormComp = () => {
                 .test("fileType", "image type should be jpg or png only ", (value) => {
                     return (!value || (value !== null && ["image/jpg", "image/png"].includes(value.type)));
                 }),
-            phoneNo: Yup.string()
-                .matches(phoneRegExp, 'Phone number is not valid')
-                .required('PhoneNo is Required'),
+            phoneNo: phoneSchema,
             email: Yup.string().email('Invalid email address').required('Email is Required'),
             password: Yup.string().required('No password provided'),
             confPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('No password provided')
@@ -55,18 +59,18 @@ const FormComp = () => {
                 })
             );
 
-            
-
             fileRef.current.value = "";
             formik.resetForm();
         },
+
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form className={classes.formDiv} onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
 
             <div className={classes.imageWrapper}>
                 <input
+                    hidden
                     type="file"
                     name="profilePic"
                     ttitle="&nbsp;"
@@ -81,13 +85,17 @@ const FormComp = () => {
                     }}
                     onBlur={formik.handleBlur}
                 />
+
+                <button onClick={() => fileRef.current.click()}>Photo +</button>
                 {formik.touched.profilePic && formik.errors.profilePic ? (
                     <div className={classes.errorMsg}>{formik.errors.profilePic}</div>
                 ) : null}
+                {formik.values.profilePic !== null && <div className={classes.photoName}>{formik.values.profilePic.name}</div>}
             </div>
 
-            <label htmlFor="name">Full Name</label>
-            {/* <img src={formik.values.profilePic} /> */}
+
+
+            <label htmlFor="name">Name</label>
 
             <input
                 className={classes.inputField}
@@ -99,18 +107,20 @@ const FormComp = () => {
                 <div className={classes.errorMsg}>{formik.errors.name}</div>
             ) : null}
 
-            <label htmlFor="lastName">PhoneNo</label>
+
+            <label htmlFor="email">Email</label>
+            <input className={classes.inputField} id="email" type="email" {...formik.getFieldProps('email')} />
+            {formik.touched.email && formik.errors.email ? (
+                <div className={classes.errorMsg}>{formik.errors.email}</div>
+            ) : null}
+
+            <label htmlFor="phoneNo">PhoneNo</label>
             <input
                 className={classes.inputField} id="phoneNo" type="text" {...formik.getFieldProps('phoneNo')} />
             {formik.touched.phoneNo && formik.errors.phoneNo ? (
                 <div className={classes.errorMsg}>{formik.errors.phoneNo}</div>
             ) : null}
 
-            <label htmlFor="email">    EmailAdd</label>
-            <input className={classes.inputField} id="email" type="email" {...formik.getFieldProps('email')} />
-            {formik.touched.email && formik.errors.email ? (
-                <div className={classes.errorMsg}>{formik.errors.email}</div>
-            ) : null}
 
             <label htmlFor="password">Password</label>
             <input className={classes.inputField} id="password" type="password" {...formik.getFieldProps('password')} />
